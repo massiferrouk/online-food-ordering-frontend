@@ -10,6 +10,7 @@ import {
   Radio,
   FormControlLabel,
 } from "@mui/material";
+import MenuCard from "./MenuCard";
 
 const categories = [
   "pizza",
@@ -28,6 +29,8 @@ const foodTypes = [
   { lable: "Non-Vegetarian", value: "non-vegetarian" },
   { lable: "Vegan", value: "vegan" },
 ];
+
+const menu=[1,1,1,1]
 
 const RestaurantDetails = () => {
     const [foodType, setFoodType] = React.useState("all");
@@ -129,7 +132,9 @@ const RestaurantDetails = () => {
             </div>
           </div>
         </div>
-        <div className="space-y-5 lg:w-[80%] lg:pl-10">menu</div>
+        <div className="space-y-5 lg:w-[80%] lg:pl-10 text-left">
+            {menu.map((item)=><MenuCard/>)}
+        </div>
       </section>
     </div>
   );
