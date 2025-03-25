@@ -18,6 +18,7 @@
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4",
+    "yup": "^1.6.1",
     "yupp": "^0.3.0"
   },
   "scripts": {

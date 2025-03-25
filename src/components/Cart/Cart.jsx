@@ -1,8 +1,10 @@
-import { Box, Button, Card, Divider, Modal } from '@mui/material'
+import { Box, Button, Card, Divider, Grid, Modal, TextField } from '@mui/material'
 import React from 'react'
 import CartItem from './CartItem'
 import AddressCard from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { ErrorMessage, Field, Formik } from 'formik';
+import { object, string } from 'yup';
 
 const style = {
     position: 'absolute',
@@ -15,6 +17,21 @@ const style = {
     boxShadow: 24,
     p: 4,
   };
+
+const initialValues = {
+    streetAddress: '',
+    state: '',
+    pincode: '',
+    city: ''
+}
+
+const validationSchema = object({
+    streetAddress: string().required('Street Address is required'),
+    state: string().required('State is required'),
+    pincode: string().required('Pincode is required'),
+    city: string().required('City is required')
+})
+
 
 const items = [1,1]
 const Cart = () => {
@@ -33,6 +50,9 @@ const Cart = () => {
     const handleClose = () => {
         setOpen(false);
     };
+    const handleSubmit=()=>{
+
+    }
   return (
     <>
         <main className='lg:flex justify-between'>
@@ -92,8 +112,26 @@ const Cart = () => {
         aria-describedby="parent-modal-description"
         >
         <Box sx={{style}}>
-            <Formik>
-                
+            <Formik 
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}       
+            >
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Field  
+                            as={TextField}
+                            name="streetAddress"
+                            label="Street Address"
+                            variant="outlined"
+                            fullWidth
+                            error={!ErrorMessage("streetAddress")}
+                            helperText={
+                                <ErrorMessage>{(msg)=><span className="text-red-600" >      {msg}</span>}
+                                </ErrorMessage>}
+                        />
+                    </Grid>
+                </Grid>
             </Formik>
         </Box>
         </Modal>
