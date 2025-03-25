@@ -3,7 +3,7 @@ import React from 'react'
 import CartItem from './CartItem'
 import AddressCard from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { ErrorMessage, Field, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 
 const style = {
@@ -50,8 +50,9 @@ const Cart = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleSubmit=()=>{
-
+    const handleSubmit=(value)=>{
+        console.log("form value", value)
+        setOpen(false)
     }
   return (
     <>
@@ -111,13 +112,14 @@ const Cart = () => {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
         >
-        <Box sx={{style}}>
+        <Box sx={style}>
             <Formik 
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}       
             >
-                <Grid container spacing={2}>
+                <Form>
+                    <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Field  
                             as={TextField}
@@ -127,11 +129,58 @@ const Cart = () => {
                             fullWidth
                             error={!ErrorMessage("streetAddress")}
                             helperText={
-                                <ErrorMessage>{(msg)=><span className="text-red-600" >      {msg}</span>}
-                                </ErrorMessage>}
+                                <ErrorMessage name='streetAddress' >{(msg)=><span className="text-red-600" >    {msg}</span>}
+                                </ErrorMessage>
+                            }
                         />
                     </Grid>
-                </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <Field  
+                            as={TextField}
+                            name="state"
+                            label="state"
+                            variant="outlined"
+                            fullWidth
+                            error={!ErrorMessage("state")}
+                            helperText={
+                                <ErrorMessage name='state' >{(msg)=><span className="text-red-600" >    {msg}</span>}
+                                </ErrorMessage>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <Field  
+                            as={TextField}
+                            name="pincode"
+                            label="pincode"
+                            variant="outlined"
+                            fullWidth
+                            error={!ErrorMessage("pincode")}
+                            helperText={
+                                <ErrorMessage name='pincode' >{(msg)=><span className="text-red-600" >    {msg}</span>}
+                                </ErrorMessage>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Field  
+                            as={TextField}
+                            name="city"
+                            label="city"
+                            variant="outlined"
+                            fullWidth
+                            error={!ErrorMessage("city")}
+                            helperText={
+                                <ErrorMessage name='city' >{(msg)=><span className="text-red-600" >    {msg}</span>}
+                                </ErrorMessage>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant='contained' color='primary' fullWidth type='submit'>Deliver Here</Button>
+                    </Grid>
+                    </Grid>
+                </Form>
             </Formik>
         </Box>
         </Modal>
