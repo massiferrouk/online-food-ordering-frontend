@@ -9,6 +9,7 @@ const EventCard = () => {
             <CardMedia
                 sx={{height: 345}}
                 image='https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=600'
+                alt='food'
             />
                 <CardContent>
                     <Typography variant='h5'>

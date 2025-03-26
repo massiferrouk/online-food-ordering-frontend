@@ -6,15 +6,15 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 
-const style = {
+export const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    bgcolor: 'black !important',
     outline:"none",
-    boxShadow: 24,
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
     p: 4,
   };
 
