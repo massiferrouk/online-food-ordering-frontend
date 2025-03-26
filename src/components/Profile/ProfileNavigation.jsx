@@ -23,7 +23,7 @@ const ProfileNavigation = ({open, handleClose}) => {
     const navigate = useNavigate();
 
     const handleNavigate=(item)=>{
-        navigate(`/myprofile/${item.title.toLowerCase()}`)
+        navigate(`/my-profile/${item.title.toLowerCase()}`)
     }
   return (
     <div>
