@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { topMeels } from './TopMeel';
 import CarouselItem from './CarouselItem';
-import { Slideshow } from '@mui/icons-material';
 
 const MultiItemCarousel = () => {
 
