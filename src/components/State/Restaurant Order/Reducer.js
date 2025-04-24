@@ -44,5 +44,9 @@ const restaurantsOrderReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.error,
             }
+        default:
+            return state;
     }
 }
+
+export default restaurantsOrderReducer;
