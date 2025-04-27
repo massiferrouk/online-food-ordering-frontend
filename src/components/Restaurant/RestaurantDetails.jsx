@@ -13,7 +13,7 @@ import {
 import MenuCard from "./MenuCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getRestaurantById } from "../State/Restaurant/Action";
+import { getRestaurantById, getRestaurantsCategory } from "../State/Restaurant/Action";
 
 const categories = [
   "pizza",
@@ -53,6 +53,7 @@ const RestaurantDetails = () => {
 
     useEffect(() => {
         dispatch(getRestaurantById({jwt, restaurantId:id}))
+        dispatch(getRestaurantsCategory({jwt, restaurantId:id}))
     }, [])
 
   return (
