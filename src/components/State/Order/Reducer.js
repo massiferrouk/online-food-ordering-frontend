@@ -1,4 +1,3 @@
-import { GET_USER_FAILURE } from "../Authentication/ActionType";
 import { GET_USERS_NOTIFICATION_SUCCESS, GET_USERS_ORDERS_FAILURE, GET_USERS_ORDERS_REQUEST, GET_USERS_ORDERS_SUCCESS } from "./ActionType";
 
 const initialState = {

@@ -3,14 +3,14 @@ import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const RestaurantCard = () => {
+const RestaurantCard = ({item}) => {
   return (
     <Card className='w-[18rem]'>
 
         <div className={`${true?'cursor-pointer':"cursor-not-allowed"} relative`}>
             <img 
                 className='w-full h-[10rem] rounded-t-md object-cover'
-                src="http://res.cloudinary.com/dcpesbd8q/image/upload/v1707802815/ux3xq93xzfbqhtudigv2.jpg" 
+                src={item.images[1]}
                 alt='' 
             />
             <Chip
