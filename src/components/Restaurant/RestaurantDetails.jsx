@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import React from "react";
+import React, { useEffect } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import {
@@ -11,6 +11,9 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import MenuCard from "./MenuCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestaurantById } from "../State/Restaurant/Action";
 
 const categories = [
   "pizza",
@@ -34,10 +37,24 @@ const menu=[1,1,1,1]
 
 const RestaurantDetails = () => {
     const [foodType, setFoodType] = React.useState("all");
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const jwt = localStorage.getItem("jwt")
+    const {auth, restaurant} = useSelector(store=>store)
+
+    const {id,city} = useParams()
+
     const handleFilter = (e) => {
         /*setFoodType(e.target.value)*/
         console.log(e.target.value, e.target.name)
     }
+
+    console.log("restaurant", restaurant)
+
+    useEffect(() => {
+        dispatch(getRestaurantById({jwt, restaurantId:id}))
+    }, [])
+
   return (
     <div className="px-5 lg:px-20">
       <section>
@@ -49,14 +66,14 @@ const RestaurantDetails = () => {
             <Grid item xs={12}>
               <img
                 className="w-full h-[40vh] object-cover"
-                src="http://res.cloudinary.com/dcpesbd8q/image/upload/v1707802815/ux3xq93xzfbqhtudigv2.jpg"
+                src={restaurant.restaurant?.images[0]}
                 alt=""
               />
             </Grid>
             <Grid item xs={12} lg={6}>
               <img
                 className="w-full h-[40vh] object-cover"
-                src="http://res.cloudinary.com/dcpesbd8q/image/upload/v1707802819/cpfxroggttxg6tedfskd.jpg"
+                src={restaurant.restaurant?.images[1]}
                 alt=""
               />
             </Grid>
@@ -70,12 +87,9 @@ const RestaurantDetails = () => {
           </Grid>
         </div>
         <div className="pt-3 pb-5">
-          <h1 className="text-4xl font-semibold text-left">Indian Fast Food</h1>
+          <h1 className="text-4xl font-semibold text-left">{restaurant.restaurant?.name}</h1>
           <p className="text-gray-500 mt-1 text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
-            nesciunt, aut quibusdam dolor vero modi dolorum animi neque
-            aspernatur sit doloremque ad non itaque, optio delectus voluptatem
-            sapiente cumque consectetur.
+            {restaurant.restaurant?.description}
           </p>
           <div className="space-y-3 mt-3">
             <p className="text-gray-500 flex items-center gap-3">

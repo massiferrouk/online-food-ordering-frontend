@@ -17,6 +17,12 @@ const RestaurantCard = ({item}) => {
         dispatch(addToFavorite({jwt, restaurantId:item.id}))
     }
 
+    const handleNavigateToRestaurant = () => {
+        if(item.open) {
+            navigate(`/restaurant/${item.address.city}/${item.name}/${item.id}`)
+        }
+    }
+
   return (
     <Card className='w-[18rem]'>
 
@@ -36,7 +42,7 @@ const RestaurantCard = ({item}) => {
 
         <div className='p-4 textPart lg:flex w-full justify-between'>
             <div className='space-y-1'>
-                <p className='font-semibold text-lg'>{item.name}</p>
+                <p onClick={handleNavigateToRestaurant} className='font-semibold text-lg cursor-pointer'>{item.name}</p>
                 <p className='text-gray-500 text-sm'>
                     {item.description}
                 </p>
