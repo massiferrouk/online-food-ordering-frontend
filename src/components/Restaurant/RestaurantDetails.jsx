@@ -15,17 +15,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRestaurantById, getRestaurantsCategory } from "../State/Restaurant/Action";
 
-const categories = [
-  "pizza",
-  "burger",
-  "fast food",
-  "chinese",
-  "indian",
-  "italian",
-  "thai",
-  "mexican",
-];
-
 const foodTypes = [
   { lable: "All", value: "all" },
   { lable: "Vegetarian only", value: "vegetarian" },
@@ -52,8 +41,8 @@ const RestaurantDetails = () => {
     console.log("restaurant", restaurant)
 
     useEffect(() => {
-        dispatch(getRestaurantById({jwt, restaurantId:id}))
-        dispatch(getRestaurantsCategory({jwt, restaurantId:id}))
+        dispatch(getRestaurantById({restaurantId:id, jwt}))
+        dispatch(getRestaurantsCategory(id, jwt))
     }, [])
 
   return (
@@ -134,12 +123,12 @@ const RestaurantDetails = () => {
 
               <FormControl className="py-10 space-y-5" component={"fieldset"}>
                 <RadioGroup onChange={handleFilter} name="food_type" value={foodType} >
-                  {categories.map((item) => (
+                  {restaurant.categories.map((item) => (
                     <FormControlLabel
-                      key={item}
-                      value={item}
+                      key={item.id}
+                      value={item.id}
                       control={<Radio />}
-                      label={item}
+                      label={item.name}
                     />
                   ))}
                 </RadioGroup>
